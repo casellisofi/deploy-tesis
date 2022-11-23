@@ -1,0 +1,63 @@
+﻿DISCONFORMIDAD_CLIENTE	POLITICA_DE_CANCELACION_O_CAMBIO
+compre paquete viajar cataratas iguazu abril pandemia suspendio vez latam pais momento declaro pandemia espero devolucion dinero dan respuestas solo indican proceso nadie contesta responde enviaron solo email septiembre diciendo devolvian gastos administrativos figuran ninguna tarjeta devolucion tampoco aclaran forma devuelven sigo espera devolucion vuelos reserva adjunto tambien numeros solicitud respuestas solicitud ca solicitud ro
+
+
+
+
+DISCONFORMIDAD_CLIENTE	FUERZA_MAYOR
+motivo aislamiento social preventivo obligatorio siendo paciente riesgo exime ello asistencia personal correo argentino efecto remitir comunicacion telegrafica pertinente remito ud formal intimacion fines perentorio plazo horas proceda dar solucion total definitiva reprogramando pasaje aereo hotel alquiler auto contratado ello formalizado siguientes reservas facturas mas abajo detallo ello debe razones publico conocimiento pandemia ocurrida pais unidos america encuentran cerradas fronteras ambos cancelados vuelos autoridad aplicacion ello intimo representacion indicada plazo indicado reprograme mismos fechas medianamente posibles afecten seguridad psicofisica representados virtud enfermedades ocurridas covid publico conocimiento espera favorable respuesta medio razon infructuosas llamadas lineas representada comunicaciones electronica parte nunca concretaron fechas ahora reclamo siempre anteriores pandemia ocurrida saludo consideracion caso dejando constancia sido debidamente notificado intimado reclamo denuncian datos reservas aereos reserva nro favor carlos alberto barrese graciela pilar gamba factura nro fecha reserva nro favor carlos j m menchise gisela r madera factura fecha hotel nro reserva factura fecha renta car numero reserva factura fecha
+
+
+ERROR_DESPEGAR	ERROR_DE_INFORMACIÓN_PROVISTA	
+mismo dia compra damos cuenta horario regreso reservas diferente contactamos despegar unica opcion daban abonando pesar pedido resolucion mismo dia hizo transaccion requerimiento siempre ir volver juntos mismo vuelo aceptamos abonar costos cambio informan tarjeta habia sido utilizada observo banco cobro si procesado finalmente acordamos operacion vuelve atras devuelven pago vuelven cotizar cambio monto mayor decidimos dejar tal fallece fernandez jesus maximiliano vuelve contactar consultar cancelacion envio documentacion solicitada luego informan vuelos disponibles regreso pasajeros luis marisa tazza ernestina
+
+
+ERROR_PROVEEDOR	ERROR_EN_DEVOLUCION	
+realizo compra pasajes aereos empresa despegar destino londres ida vuelta ezeiza realizar viaje fecha razones pandemia vuelo cancelado aerolineas british procedimos solicitud reembolso cuales aceptados compania aerea empresa despegar envio via mail nota credito correspondiente devolucion medio pago original tarjeta credito visa banco ciudad considerando tiempos atendibles demora devolucion situacion pandemia tiempos estimados informados telefonicamente dias vemos obligados medio realizar reclamo correspondiente pasado fecha recibimos nota credito dias reembolso realizado aun ademas manera comunicarse empresa via mail telefonicamente atiende nunca dejandonos horas espera telefono
+
+
+ERROR_PROVEEDOR	INCUMPLIMIENTO_DEL_SERVICIO
+contrate traslado nunca brindo gracias nula respuesta despegar afrontar gastos superiores realizar traslado perder vuelo regreso luego reclame despegar reintegre dinero reserva gastos adicionales incurri luego negarse devolverme gaste adicional irresponsabilidad resolvieron reintegrarme costo abone servicio otorgarme usd compensacion solicite usd dia fecha transcurrido mas meses brinde cbu acrediten usd compensacion recibi despegar contesta emails vez tampoco devolvieron importe reserva original solicito reintegre importe cobro original brinde compensacion original solicite usd gastos adicionales incurrir vez compensacion danos perjuicios haber transcurrido mas meses brindar respuestas lavarse manos solicito compensacion concepto inferior usd danos perjuicios ocasionados falta respeto despegar hacia persona adjunto copia emails proceso reclamo consta nunca respondieron solicitaba informacion mismo
+
+
+FRAUDE	FRAUDE_RIESGO	
+dia duplicaron tarjeta credito denuncie minutos hecho llego alerta mail llame mastercard di eron baja tarjeta dijeron llame rapido operacion cancelaba espere resumen banco si llega consumo vaya reclamar llego consumo reclame dieron plazo dias recien llego mail debia pagar gastos fraude pase x banco retirar comprovantes empresa despegar nombre hize veo compra hizo dni cuenta oficial mail vaucher estan nombre persona conosco comunique defensa consumidor ciudad desp reuniones propusieron espero pueda hacer empresas dejen tomarnos tontos toda documentacion mastercard grabacion conversacion dia numero reclamo mastercard n reclamo banco macro n
+
+FRAUDE	FRAUDE_AMIGABLE	
+realizo compra pasajes aereos tarjeta credito realice compra autorice pasajes estan nombre hermana hijos realice desconocimiento compra corriente resumen tarjeta llegaron cuotas pagar supuesto pasajes nunca utilizaron fin mes entere
+
+
+#Grafico distribucion de reclamos en el tiempo
+fig_since_2020 = px.histogram(df_clean, x='fecha', template="plotly_dark",  title="Reclamos por mes - desde 2020", labels={'fecha':"año"}, nbins=12)
+fig_since_2020.update_xaxes(rangeslider_visible=True)
+fig_since_2020.show()
+
+EPOCH AND BATCH_SIZE
+https://medium.com/mlearning-ai/difference-between-the-batch-size-and-epoch-in-neural-network-2d2cb2a16734
+
+
+ERROR_DESPEGAR PROBLEMA_EN_DEVOLUCION
+Se solicita el reintegro de $71983.90, toda vez que por los motivos de publico conocimiento fue cancelado el vuelo cuya reserva en esa empresa era 14332117400 dicho importe fue informado mediante mail de la cia aérea Delta Air Lines de fecha 22 de junio de 2020  donde se detalla que la devolución del dinero fue realizada que se acreditara en la misma tarjeta de crédito en que fue adonada y con fecha 23/03/2020. Despegar responde a la consulta al respecto posteriormente con fecha 21/07/2020, responde un mail eludiendo la devolución del dinero. 
+
+
+DISCONFORMIDAD_CLIENTE	CLIENTE_INSATISFECHO_CON_SERVICIO	VUELO_RETRASADO	"El 29/04 se comunica el pax e informa que no le dejan tomar el vuelo, solicita una alternativa o cambiar de compañía. Se le informa que no podemos hacer nada porque el tkt está en manos de la aerolínea.
+
+El 11/05 reclama que el vuelo nunca salió y que perdió una noche de hotel y el traslado; y no recibió ninguna respuesta ni de la aerolínea ni nuestra.
+
+El 15/05 Costumer consulta con LA y le informan que si bien el vuelo tuvo una reprogramación, los tkts se reemitieron y los pax viajaron. Para resarcimiento, debe contactarse con el servicio al cliente de la aerolínea. El 17/05 se le brinda la info a la pax.        
+
+--
+
+El 29/04 el pax se comunica ya que por una reprogramación, llegará un día después al hotel. Solicita modificación por reservas: 6940160902, 6940112302 y por el traslado 560472050900. No se le brinda respuesta.
+
+DISCONF CLIENTE-INSATISFECHO
+El 28/05 reclama que llegó un día después al hotel y nadie la ayudó, solicita un resarcimiento. Se le informa que no aplica y reclama que a otra persona sí le dieron (Reserva 6940085702 – resarcimiento U$S100 / $2248).              "
+
+
+DISCONFORMIDAD_CLIENTE POLITICA_DE_CANCELACION_O_CAMBIO
+
+Viaje cancelado con COVID 19 con cobro de penalidad que no corresponde ya que es un caso fortuito 
+
+
+DISCONFORMIDAD_CLIENTE FUERZA_MAYOR
+Compre un paquete para viajar a cataratas del iguazu en abril. Por la pandemia se suspendio todo. A su vez, Latam se fue del pais. Desde el momento que se declaro la pandemia que espero la devolucion del dinero y no me dan respuestas, solo me indican que esta en proceso. Nadie me contesta ni me responde. Me enviaron un solo email en septiembre diciendo que me devolvian gastos administrativos y no me figuran en ninguna tarjeta la devolucion ni tampoco me aclaran de que forma me lo devuelven. Sigo a la espera de la devolución de los vuelos. Adjunto los numeros de solicitud sin respuestas Solicitud CA-5937411 Solicitud RO-13164664

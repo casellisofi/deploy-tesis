@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clasificacion de reclamos</title>
+    <link rel="stylesheet"  type="text/css" href="{{ url_for('static', filename= 'vendor/fontawesome-free/css/all.min.css') }}">
+    
+    <!-- Fuentes personalizadas para esta plantilla-->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="{{ url_for('static', filename= 'vendor/bootstrap/css/bootstrap.min.css') }}">
+   
+    <!-- Estilos personalizados para esta plantilla-->
+    <link rel="stylesheet"  type="text/css" href="{{ url_for('static', filename= 'css/sb-admin-2.css') }}">
+   
+</head>
+
+<body id="page-top">
+
+    <!-- Envoltorio de página -->
+    <div id="wrapper">
+
+    <!-- Barra lateral -->
+    <ul class="navbar-nav back-purple sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Barra lateral: marca -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <div class="sidebar-brand-text"> Menu<sup></sup></div>
+        </a>
+        <!-- Divisor  -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Análisis
+        </div>
+
+                        <!-- Menu Gráficos -->
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                                aria-expanded="true" aria-controls="collapseUtilities">
+                                <i class="fas fa-fw fa-chart-area"></i>
+                                <span>Gráficos</span>
+                            </a>
+                            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                                data-parent="#accordionSidebar">
+                                <div class="bg-white py-2 collapse-inner rounded">
+                                    <h6 class="collapse-header">GRÁFICOS:</h6>
+                                    <a class="collapse-item" href="tipos">Gráficos de Tipos</a>
+                                    <a class="collapse-item" href="subtipos">Gráficos de Subtipos</a>
+                                    <a class="collapse-item" href="analisis-tiempo">Series de tiempo</a>
+                                </div>
+                            </div>
+                        </li>
+
+            <!-- Preprocesamiento -->
+             <li class="nav-item">
+                 <a class="nav-link" href="procesamiento">
+                    <i class="fas fa-fw fa-cog"></i>
+                     <span>Procesamiento del texto</span></a>
+             </li>
+
+
+
+                 <!-- Divisor -->
+                 <hr class="sidebar-divider">
+
+                 <!-- Heading -->
+                 <div class="sidebar-heading">
+                    ENTRENAMIENTO
+                 </div>
+     
+            <!-- Entranmiento -->
+            <li class="nav-item">
+                <a class="nav-link" href="train-modelos">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Entrenar Modelos</span></a>
+                </li>
+
+ 
+        <!-- Divisor -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            EVALUACIÓN 
+        </div>
+
+            <!-- Menu PAGES -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Modelos</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="naive-bayes">NAIVE BAYES</a>
+                        <a class="collapse-item" href="svm">SVM</a>
+                        <a class="collapse-item" href="bert">BERT</a>       
+                        <a class="collapse-item" href="fusion">FUSION</a>     
+                    </div>
+                </div>
+            </li>
+
+            <!-- Menu Clasificaciones -->
+            <li class="nav-item">
+                <a class="nav-link" href="clasificaciones">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Clasificaciones</span></a>
+            </li>
+
+            <!-- Menu Metricas -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMetricas"
+                    aria-expanded="true" aria-controls="collapseMetricas">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Métricas</span>
+                </a>
+                <div id="collapseMetricas" class="collapse" aria-labelledby="headingMetricas" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="nb-metricas">NAIVE BAYES</a>
+                        <a class="collapse-item" href="svm-metricas">SVM</a>
+                        <a class="collapse-item" href="bert-metricas">BERT</a>       
+                        <a class="collapse-item" href="fusion-metricas">FUSION</a>
+                        <a class="collapse-item" href="metricas">COMPARACIÓN FINAL</a>     
+                    </div>
+                </div>
+            </li>
+            
+
+    </ul>
+    <!-- FIN Barra lateral -->
+
+        <!-- FIN Barra lateral -->
+
+        <!-- Envoltorio de contenido -->
+        <div id="content-wrapper" class="d-flex flex-column ">
+
+            <!--Contenido principal  -->
+            <div id="content">
+
+                <!-- Barra superior TITULO-->
+                <nav class="navbar navbar-expand back-purple topbar mb-4 shadow">
+                    <div class="titulo text-white">
+                        <h2>Sistema de Clasificación de reclamos </h2>
+                    </div>
+
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+                                            Guia de usuario
+                                        </button>
+                                        
+                                    <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Guia de usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        Los reclamos se categorizan en tipos y subtipos.<br><br>
+                        Aclaraciones:<br><br>
+                        Gráfico circular: indica los subtipos que corresponden a cada tipo. <br>
+                        Histogramas: indica la cantidad de registros para cada subtipo.<br>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </nav>
+                <!-- FIN Barra superior -->
+                
+                <div class="row">
+                    <br>
+                    <h2 class="color-purple text-center">Gráficos de subtipos de reclamos</h2>
+                    <br><br>    
+                </div>
+                <!--Contenido de la página de inicio -->
+                <div class="container-fluid col">
+
+
+                    <div class="row">
+                    
+                        <!-- Gráfico de Tortas -->
+                        <div class="col-xl-8 col-lg-8">
+                            <div class="card shadow" style="width: 42rem; height:32rem;">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-6 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold color-purple">Gráfico circular</h6>
+                                </div>
+                                
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie">
+                                        <iframe src="{{ url_for('static', filename= './img/pie_subtipos.html') }}" height="450" width="650"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    <!-- FIN Contenido de fila 2-->
+                </div>
+
+                
+                <!--FIN Contenido de la página de inicio -->
+            </div>
+            <!-- Divisor  -->
+            <hr class="sidebar-divider">
+
+
+                            <!--Contenido de la página de inicio -->
+                            <div class="container-fluid col">
+
+
+                                <div class="row">
+                                
+                                    <!-- Gráfico de Frecuencias -->
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="card shadow" style="width: 38rem; height:35rem;">
+                                            <!-- Card Header - Dropdown -->
+                                            <div
+                                                class="card-header py-6 d-flex flex-row align-items-center justify-content-between">
+                                                <h6 class="m-0 font-weight-bold color-purple">Histograma</h6>
+                                            </div>
+                                            
+                                            <!-- Card Body -->
+                                            <div class="card-body">
+                                                <div class="chart-pie">
+                                                    <iframe src="{{ url_for('static', filename= './img/bar_tipo1.html') }}" height="450" width="580"></iframe>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                    
+                                    <!-- Gráfico de Frecuencias -->
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="card shadow" style="width: 38rem; height:35rem;">
+                                            <!-- Card Header - Dropdown -->
+                                            <div
+                                                class="card-header py-6 d-flex flex-row align-items-center justify-content-between">
+                                                <h6 class="m-0 font-weight-bold color-purple">Histograma</h6>
+                                            </div>
+                                            
+                                            <!-- Card Body -->
+                                            <div class="card-body">
+                                                <div class="chart-pie">
+                                                    <iframe src="{{ url_for('static', filename= './img/bar_tipo2.html') }}" height="450" width="580"></iframe>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                <!-- FIN Contenido de fila 2-->
+                            </div>
+                            </div>
+
+                            <!-- Divisor  -->
+                            <hr class="sidebar-divider">
+
+
+                            <!--Contenido de la página de inicio -->
+                            <div class="container-fluid col">
+
+
+                                <div class="row">
+                                        
+                                        <!-- Gráfico de Frecuencias -->
+                                        <div class="col-xl-6 col-lg-6">
+                                            <div class="card shadow" style="width: 38rem; height:35rem;">
+                                                <!-- Card Header - Dropdown -->
+                                                <div
+                                                    class="card-header py-6 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold color-purple">Histograma</h6>
+                                                </div>
+                                                
+                                                <!-- Card Body -->
+                                                <div class="card-body">
+                                                    <div class="chart-pie">
+                                                        <iframe src="{{ url_for('static', filename= './img/bar_tipo3.html') }}" height="450" width="580"></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                                        
+                                        <!-- Gráfico de Frecuencias -->
+                                        <div class="col-xl-6 col-lg-6">
+                                            <div class="card shadow" style="width: 38rem; height:35rem;">
+                                                <!-- Card Header - Dropdown -->
+                                                <div
+                                                    class="card-header py-6 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold color-purple">Histograma</h6>
+                                                </div>
+                                                
+                                                <!-- Card Body -->
+                                                <div class="card-body">
+                                                    <div class="chart-pie">
+                                                        <iframe src="{{ url_for('static', filename= './img/bar_tipo4.html') }}" height="450" width="580"></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    <!-- FIN Contenido de fila 2-->
+                                </div>
+                
+                                <!-- FIN Contenido de fila 2-->
+                            </div>
+            
+                        </div>
+
+            <!--FIN Contenido principal  -->
+            <br>
+            <br>
+            <!-- Pie de página-->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Your Website 2022</span>
+                        </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- FIN Envoltorio de contenido -->
+
+    </div>
+    <!-- FIN Envoltorio de página -->
+
+
+
+
+
+
+    
+  <!-- Bootstrap core JavaScript-->
+    <script src="{{ url_for('static', filename= 'vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename= 'vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ url_for('static', filename= 'vendor/jquery-easing/jquery.easing.min.js') }}" ></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ url_for('static', filename= 'js/sb-admin-2.min.js') }}" ></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ url_for('static', filename= 'vendor/chart.js/Chart.min.js') }}" ></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ url_for('static', filename= 'js/demo/chart-area-demo.js') }} "></script>
+    <script src="{{ url_for('static', filename= 'js/demo/chart-pie-demo.js') }} "></script>
+
+</body>
+
+</html>
