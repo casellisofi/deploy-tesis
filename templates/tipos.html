@@ -29,7 +29,7 @@
     <!-- Barra lateral -->
     <ul class="navbar-nav back-purple sidebar sidebar-dark accordion" id="accordionSidebar">
         <!-- Barra lateral: marca -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
             <div class="sidebar-brand-text"> Menu<sup></sup></div>
         </a>
         <!-- Divisor  -->
@@ -143,43 +143,43 @@
             <!--Contenido principal  -->
             <div id="content">
 
-                <!-- Barra superior TITULO-->
-                <nav class="navbar navbar-expand back-purple topbar mb-4 shadow">
-                    <div class="titulo text-white">
-                        <h2>Sistema de Clasificación de reclamos </h2>
-                    </div>
-
-                                        <!-- Button trigger modal -->
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
-                    Guia de usuario
-                </button>
+                                <!-- Barra superior TITULO-->
+                                <nav class="navbar navbar-expand back-purple topbar mb-4 shadow">
+                                    <div class="titulo text-white">
+                                        <h2>Sistema de Clasificación de reclamos </h2>
+                                    </div>
                 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Guia de usuario</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
+                                
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+                                                            Guia de usuario
+                                                        </button>
+                                                        
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Guia de usuario</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Los reclamos se categorizan en tipos y subtipos.<br><br>
+                                                                    Aclaraciones:<br><br>
+                                                                    Gráfico de tortas: indica la cantidad en porcentajes para cada tipo. <br>
+                                                                    Histograma: indica la cantidad de registros para cada tipo.<br>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                </nav>
+                                <!-- FIN Barra superior -->
 
-                        Los reclamos se categorizan en tipos y subtipos.<br><br>
-                        Aclaraciones:<br><br>
-                        Gráfico de tortas: indica la cantidad en porcentajes para cada tipo. <br>
-                        Histograma: indica la cantidad de registros para cada tipo.<br>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </nav>
-                </nav>
-                <!-- FIN Barra superior -->
                 
                 <div class="row">
                     <br>
@@ -187,55 +187,25 @@
                     <br><br><br>      
                 </div>
                 <!--Contenido de la página de inicio -->
-                <div class="container-fluid col ">               
-      
-                    <br> 
-                    <div class="row">
-                        <div class="col-6">
-                        <!-- Gráfico de Tortas -->
-                            <div class="card shadow" style="width: 42rem; height:32rem;">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-6 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold color-purple">Gráfico de Tortas</h6>
-                                </div>
-                                
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie">
-                                        <iframe src="{{ url_for('static', filename= './img/pie_tipos.html') }}" height="450" width="650"></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="card shadow" style="width: 42rem; height:32rem;">
-                        <div
-                            class="card-header py-6 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold color-purple">Histograma</h6>
-                        </div>
+                <div class="row">
+
                     
-                        <!-- Card Body -->
-                        <div class="card-body">
-                         <div class="chart-pie">
-                            <iframe src="{{ url_for('static', filename= './img/bar_tipos.html') }}" height="450" width="650"></iframe>
-                            </div>
-                    </div></div>
+                    <div class="col-6">
+    
                         
-                    <!-- FIN Contenido de fila 2-->
-                </div>
-
-
-                                            
-                <!--FIN Contenido de la página de inicio -->
-            </div>
-            <!-- Divisor  -->
-     
-                            <!--FIN Contenido de la página de inicio -->
+                        <div class="card-body  text-center">
+                            <iframe src="{{ url_for('static', filename= './img/pie_tipos.html') }}" height="470" width="580"></iframe>
                         </div>
+                    </div>
+                    <div class="col-6">
+                    <div class="card-body  text-center">
+                        <iframe src="{{ url_for('static', filename= './img/bar_tipos.html') }}" height="470" width="550"></iframe>
+                    </div>
+                    <br>
+                </div>
+            </div>
             <!--FIN Contenido principal  -->
-            <br>
-            <br>
+
             <!-- Pie de página-->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -250,6 +220,9 @@
 
     </div>
     <!-- FIN Envoltorio de página -->
+
+
+
 
 
 

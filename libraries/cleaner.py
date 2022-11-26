@@ -1,5 +1,5 @@
 from libraries import *
-from libraries import model_bert
+#from libraries import model_bert
 
 
 
@@ -15,7 +15,7 @@ subtipos4 = {0:'FRAUDE_AMIGABLE',1:'FRAUDE_RIESGO'}
 
 
 
-nlp = spacy.load('es_core_news_sm')
+#nlp = spacy.load('es_core_news_sm')
 
 def acentos(text):
     text = str(unicodedata.normalize('NFKD', text).encode('ascii','ignore'))[2:-1]
@@ -37,9 +37,9 @@ def tokenize(text):
 
 
 def lemmatize(text):
-    text = nlp(text)
-    text = ' '.join([word.lemma_ if word.lemma_ != '-PRON-' else word.text for word in text])
-    return text
+#     text = nlp(text)
+#     text = ' '.join([word.lemma_ if word.lemma_ != '-PRON-' else word.text for word in text])
+     return text
 
 
 #Aplica técnicas de limpieza de reclamoo para reclamos en ESPAÑOL
@@ -153,8 +153,8 @@ def name_subtipos(tipo,subtipo):
 
 #Retorna la clasificación de subtipo en base al tipo y modelo de clasificacion que recibe de ARGENTINA
 def subtipos_arg(tipo,reclamo,modelo):
-    tokenizer = BertTokenizer.from_pretrained('dccuchile/bert-base-spanish-wwm-uncased', do_lower_case=True)
-    reclamo_tokenized_bert = model_bert.regular_encode([reclamo], tokenizer, maxlen=100)
+    #tokenizer = BertTokenizer.from_pretrained('dccuchile/bert-base-spanish-wwm-uncased', do_lower_case=True)
+    #reclamo_tokenized_bert = model_bert.regular_encode([reclamo], tokenizer, maxlen=100)
     if tipo == 'DECISION_DE_NEGOCIO':
         subtipo = 'LEY_DE_RETRACTO'
         return subtipo
