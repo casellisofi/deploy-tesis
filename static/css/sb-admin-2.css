@@ -10452,6 +10452,11 @@ a:focus {
   color:  #352f48;
 }
 
+#right {
+  position: relative;
+  float: right;
+}
+
 .back-purple{
   background-color: #352f48 ;
 }

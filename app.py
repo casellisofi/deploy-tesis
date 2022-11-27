@@ -9,10 +9,10 @@ from flask_login import LoginManager
 import sys 
 
 try:
-	conexion = pymysql.connect( host='us-cdbr-east-06.cleardb.net',
-                                user='b2590597ec3463',
-                                password='f0c1aff1',
-                                db='heroku_3389e7d80f0e249')
+	conexion = pymysql.connect( host='localhost',
+                                user='root',
+                                password='Sofia1900',
+                                db='tesis')
 	print("Conexión correcta")
 except (pymysql.err.OperationalError, pymysql.err.InternalError) as e:
 	print("Ocurrió un error al conectar: ", e)
@@ -50,6 +50,10 @@ def login():
             msg='Incorrect username/password. Try again!'
     return render_template('login.html',msg=msg)
 
+@app.route('/logout')
+def logout():
+    session.pop('username',None)
+    return redirect(url_for('login'))
 
 @app.route('/naive-bayes')
 def bayes():
@@ -360,4 +364,5 @@ def metricas():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port='8080')
+    #app.run(host='0.0.0.0',port='8080')
+    app.run(debug=True)
