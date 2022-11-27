@@ -247,14 +247,15 @@
 
                             <button type="submit" class="btn btn-outline back-purple text-white">Predecir</button>
                             <br>
-                            <br><h4 class="color-purple"> Resultados: </h4>       <br>                   
-                            <h4 class="color-purple"> Tipo de reclamo: {{ prediction_tipo_fusion }} </h4>
-                            <h4 class="color-purple"> Subtipo de reclamo:  {{ prediction_subtipo_fusion }} </h4>                              
+                            <br><h4 class="color-purple font-bold"> Resultados: </h4>       <br>                 
+                            <h4 class="color-purple font-bold"> Tipo de reclamo: {{ prediction_tipo_fusion }} </h4>
+                            <h4 class="color-purple font-bold"> Subtipo de reclamo:  {{ prediction_subtipo_fusion }} </h4>                              
+                            <h4 class="color-purple font-bold"> Reclamo: {{ reclamo }} </h4>  
                         </form>
                     
                        <br>
                        <br>
-                       <h2 class="color-purple text-center">Clasificación de reclamos (dataset)</h2>
+                       <h2 class="color-purple text-center font-bold">Clasificación de reclamos (dataset)</h2>
                        <h5 class="color-purple ">Ingresar un archivo que contenga reclamos de clientes, se clasificarán los reclamos con los tres modelos mas la fusion de los mismos.</h5>
                        <br>
                        <input type="file">

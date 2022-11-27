@@ -177,7 +177,7 @@ def predict_nb():
     #Guardar en la base de datos
     database.insertar_modelo('Naive Bayes', text, tipo_nb,subtipo_nb,'NO')
 
-    return render_template('bayes.html', prediction_tipo_nb= tipo_nb,prediction_subtipo_nb= subtipo_nb,username=session['username'])
+    return render_template('bayes.html', reclamo=text[0], prediction_tipo_nb= tipo_nb,prediction_subtipo_nb= subtipo_nb,username=session['username'])
 
 # VISTA MODELOS SVM
 @app.route('/svm/predict/',methods=["GET", "POST"])
@@ -200,7 +200,7 @@ def predict_svm():
     subtipo_svm = cleaner.subtipos_arg(tipo_svm,reclamo_clean,'svm')
     #Guardar en la base de datos
     database.insertar_modelo('SVM', text, tipo_svm,subtipo_svm,'NO')
-    return render_template('svm.html', prediction_tipo_svm= tipo_svm,prediction_subtipo_svm= subtipo_svm,username=session['username'])
+    return render_template('svm.html', reclamo=text[0], prediction_tipo_svm= tipo_svm,prediction_subtipo_svm= subtipo_svm,username=session['username'])
 
 # VISTA MODELOS BERT
 @app.route('/bert/predict/',methods=["GET", "POST"])
@@ -234,7 +234,7 @@ def predict_bert():
 
     #Guardar en la base de datos
     database.insertar_modelo('BERT', reclamo, tipo_bert,subtipo_bert,'NO')
-    return render_template('bert.html',prediction_tipo_bert= tipo_bert,prediction_subtipo_bert= subtipo_bert,username=session['username'])
+    return render_template('bert.html', reclamo=reclamo[0],prediction_tipo_bert= tipo_bert,prediction_subtipo_bert= subtipo_bert,username=session['username'])
 
 # VISTA MODELOS FUSION
 @app.route('/fusion/predict/',methods=["GET", "POST"])
@@ -326,7 +326,7 @@ def predict_fusion():
     subtipo_final = reglas.best_recall_subtipos(svm_subtipos,bert_subtipos,nb_subtipos,subtipo_svm_final,subtipo_bert_final,subtipo_nb_final)
 
     database.insertar_modelo('FUSION', text, tipo_final,subtipo_final,'NO')
-    return render_template('fusion.html', prediction_tipo_nb= tipo_nb,prediction_subtipo_nb= subtipo_nb,
+    return render_template('fusion.html', reclamo=text[0], prediction_tipo_nb= tipo_nb,prediction_subtipo_nb= subtipo_nb,
     prediction_tipo_svm= tipo_svm,prediction_subtipo_svm= subtipo_svm,
     prediction_tipo_bert= tipo_bert,prediction_subtipo_bert= subtipo_bert,
     prediction_tipo_fusion= tipo_final,prediction_subtipo_fusion= subtipo_final,username=session['username'])
