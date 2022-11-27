@@ -37,16 +37,21 @@ def login():
     if request.method=='POST':
         username = request.form['username']
         password = request.form['password']
-        cursor.execute('SELECT * FROM usuarios WHERE username=%s AND password=%s',(username,password,))
-        record = cursor.fetchone()
-        if record:
-            session['loggedin'] = True
-            session['username'] = record[1]
-            return redirect(url_for('home'))
-        else:
-            msg='Incorrect username/password. Try again!'
+        try:
+            print(conexion.ping())
+            cursor.execute('SELECT * FROM users WHERE username=%s AND password=%s',(username,password,))
+            record = cursor.fetchone()
+            if record:
+                session['loggedin'] = True
+                session['username'] = record[1]
+                return redirect(url_for('home'))
+            else:
+                msg='Usuario y/o contraseña incorrecta.'
+        except (pymysql.err.OperationalError, pymysql.err.InternalError,pymysql.err.InterfaceError) as e:  
+            msg='Ocurrio un error en el servidor. Vuelve a intentarlo'
+            return render_template('login.html',msg=msg)
     return render_template('login.html',msg=msg)
-
+        
 @app.route('/logout')
 def logout():
     session.pop('username',None)
@@ -54,51 +59,55 @@ def logout():
 
 @app.route('/naive-bayes')
 def bayes():
-    return render_template('bayes.html')
+    return render_template('bayes.html',username=session['username'])
 
 @app.route('/svm')
 def svm():
-    return render_template('svm.html')
+    return render_template('svm.html',username=session['username'])
 
 @app.route('/bert')
 def bert():
-    return render_template('bert.html')
+    return render_template('bert.html',username=session['username'])
 
 @app.route('/fusion')
 def fusion():
-    return render_template('fusion.html')
+    return render_template('fusion.html',username=session['username'])
 
 @app.route('/clasificaciones')
 def clasif():
-    modelos2 = database.obtener_modelos()
-    return render_template('clasificaciones.html',modelos = modelos2)
-
+    try:
+        modelos2 = database.obtener_modelos()
+        return render_template('clasificaciones.html',modelos = modelos2,username=session['username'])
+    except (pymysql.err.OperationalError, pymysql.err.InternalError) as e:  
+        msg='Ocurrio un error en el servidor. Vuelve a intentarlo'
+        return render_template('clasificaciones.html',modelos = msg,username=session['username'])
+    
 @app.route("/editar/<int:id>")
 def editar_juego(id):
     # Obtener el juego por ID
     database.validar_modelo(id)
-    return redirect("/clasificaciones")
+    return redirect("/clasificaciones",username=session['username'])
 
 
 @app.route('/tipos')
 def tipos():
-    return render_template('tipos.html')
+    return render_template('tipos.html',username=session['username'])
 
 @app.route('/subtipos')
 def subtipos():
-    return render_template('subtipos.html')
+    return render_template('subtipos.html',username=session['username'])
 
 @app.route('/analisis-tiempo')
 def model_fusion():
-    return render_template('analisis-tiempo.html')
+    return render_template('analisis-tiempo.html',username=session['username'])
 
 @app.route('/train-modelos')
 def train_modelos():
-    return render_template('train-modelos.html')
+    return render_template('train-modelos.html',username=session['username'])
 
 @app.route('/procesamiento')
 def procesamiento():
-    return render_template('procesamiento.html')
+    return render_template('procesamiento.html',username=session['username'])
 
 
 # VISTA PROCESAMIENTO
@@ -148,7 +157,7 @@ def procesamiento_resultado():
         resultado = cleaner.lemmatize(text)
     else:
         resultado = text
-    return render_template('procesamiento.html', result = resultado)
+    return render_template('procesamiento.html', result = resultado,username=session['username'])
 
 # VISTA MODELOS NAIVE BAYES
 @app.route('/naive-bayes/predict/',methods=["GET", "POST"])
@@ -168,7 +177,7 @@ def predict_nb():
     #Guardar en la base de datos
     database.insertar_modelo('Naive Bayes', text, tipo_nb,subtipo_nb,'NO')
 
-    return render_template('bayes.html', prediction_tipo_nb= tipo_nb,prediction_subtipo_nb= subtipo_nb)
+    return render_template('bayes.html', prediction_tipo_nb= tipo_nb,prediction_subtipo_nb= subtipo_nb,username=session['username'])
 
 # VISTA MODELOS SVM
 @app.route('/svm/predict/',methods=["GET", "POST"])
@@ -191,7 +200,7 @@ def predict_svm():
     subtipo_svm = cleaner.subtipos_arg(tipo_svm,reclamo_clean,'svm')
     #Guardar en la base de datos
     database.insertar_modelo('SVM', text, tipo_svm,subtipo_svm,'NO')
-    return render_template('svm.html', prediction_tipo_svm= tipo_svm,prediction_subtipo_svm= subtipo_svm)
+    return render_template('svm.html', prediction_tipo_svm= tipo_svm,prediction_subtipo_svm= subtipo_svm,username=session['username'])
 
 # VISTA MODELOS BERT
 @app.route('/bert/predict/',methods=["GET", "POST"])
@@ -225,7 +234,7 @@ def predict_bert():
 
     #Guardar en la base de datos
     database.insertar_modelo('BERT', reclamo, tipo_bert,subtipo_bert,'NO')
-    return render_template('bert.html',prediction_tipo_bert= tipo_bert,prediction_subtipo_bert= subtipo_bert)
+    return render_template('bert.html',prediction_tipo_bert= tipo_bert,prediction_subtipo_bert= subtipo_bert,username=session['username'])
 
 # VISTA MODELOS FUSION
 @app.route('/fusion/predict/',methods=["GET", "POST"])
@@ -320,41 +329,41 @@ def predict_fusion():
     return render_template('fusion.html', prediction_tipo_nb= tipo_nb,prediction_subtipo_nb= subtipo_nb,
     prediction_tipo_svm= tipo_svm,prediction_subtipo_svm= subtipo_svm,
     prediction_tipo_bert= tipo_bert,prediction_subtipo_bert= subtipo_bert,
-    prediction_tipo_fusion= tipo_final,prediction_subtipo_fusion= subtipo_final)
+    prediction_tipo_fusion= tipo_final,prediction_subtipo_fusion= subtipo_final,username=session['username'])
 
 
 
 @app.route('/nb-metricas')
 def bayes_metricas():
-    return render_template('metricas-nb.html')
+    return render_template('metricas-nb.html',username=session['username'])
 
 @app.route('/nb-metricas2')
 def bayes_metricas2():
-    return render_template('metricas-nb2.html')
+    return render_template('metricas-nb2.html',username=session['username'])
 
 @app.route('/svm-metricas')
 def svm_metricas():
-    return render_template('metricas-svm.html')
+    return render_template('metricas-svm.html',username=session['username'])
 
 @app.route('/svm-metricas2')
 def svm_metricas2():
-    return render_template('metricas-svm2.html')
+    return render_template('metricas-svm2.html',username=session['username'])
 
 @app.route('/bert-metricas')
 def bert_metricas():
-    return render_template('metricas-bert.html')
+    return render_template('metricas-bert.html',username=session['username'])
 
 @app.route('/bert-metricas2')
 def bert_metricas2():
-    return render_template('metricas-bert2.html')
+    return render_template('metricas-bert2.html',username=session['username'])
 
 @app.route('/fusion-metricas')
 def fusion_metricas():
-    return render_template('metricas-fusion.html')
+    return render_template('metricas-fusion.html',username=session['username'])
 
 @app.route('/metricas')
 def metricas():
-    return render_template('metricas.html')
+    return render_template('metricas.html',username=session['username'])
 
 
 

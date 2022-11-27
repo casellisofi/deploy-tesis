@@ -11,6 +11,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+.opacity-user {
+  opacity: 0.6;
+}
+
  .login {
 	position: absolute;
 	top: 40%;

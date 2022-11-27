@@ -26,6 +26,8 @@
     <!-- Envoltorio de página -->
     <div id="wrapper">
         <!-- Barra lateral -->
+
+        <!-- Barra lateral -->
         <ul class="navbar-nav back-purple sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Barra lateral: marca -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
@@ -33,20 +35,27 @@
             </a>
             <!-- Divisor  -->
             <hr class="sidebar-divider">
-
+  
             <!-- Heading -->
             <div class="sidebar-heading">
                 Análisis
             </div>
-
                             <!-- Menu Gráficos -->
-                            <li class="nav-item">
+                            <li class="nav-item" >
+                                {% if username == 'Operador' %}
+                                <a class="nav-link collapsed disabled opacity-user" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                                    aria-expanded="true" aria-controls="collapseUtilities">
+                                    <i class="fas fa-fw fa-chart-area"></i>
+                                    <span>Gráficos</span>
+                                </a>
+                                {% else %}
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                                     aria-expanded="true" aria-controls="collapseUtilities">
                                     <i class="fas fa-fw fa-chart-area"></i>
                                     <span>Gráficos</span>
                                 </a>
-                                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                                {% endif %}
+                                <div id="collapseUtilities" class="collapse"  aria-labelledby="headingUtilities"
                                     data-parent="#accordionSidebar">
                                     <div class="bg-white py-2 collapse-inner rounded">
                                         <h6 class="collapse-header">GRÁFICOS:</h6>
@@ -56,16 +65,20 @@
                                     </div>
                                 </div>
                             </li>
-
                 <!-- Preprocesamiento -->
+                {% if username == 'Operador' %}
                  <li class="nav-item">
-                     <a class="nav-link" href="procesamiento">
+                     <a class="nav-link disabled opacity-user" href="procesamiento">
                         <i class="fas fa-fw fa-cog"></i>
                          <span>Procesamiento del texto</span></a>
                  </li>
-
-
-
+                 {% else %}
+                 <li class="nav-item">
+                    <a class="nav-link" href="procesamiento">
+                       <i class="fas fa-fw fa-cog"></i>
+                        <span>Procesamiento del texto</span></a>
+                </li>
+                {% endif %}
                      <!-- Divisor -->
                      <hr class="sidebar-divider">
 
@@ -75,13 +88,19 @@
                      </div>
          
                 <!-- Entranmiento -->
+                {% if username == 'Operador' %}
                 <li class="nav-item">
-                    <a class="nav-link" href="train-modelos">
+                    <a class="nav-link disabled opacity-user" href="train-modelos">
                         <i class="fas fa-fw fa-cog"></i>
                         <span>Entrenar Modelos</span></a>
                     </li>
-
-     
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="train-modelos">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>Entrenar Modelos</span></a>
+                        </li>  
+                        {% endif %}  
             <!-- Divisor -->
             <hr class="sidebar-divider">
 
@@ -108,13 +127,41 @@
                 </li>
 
                 <!-- Menu Clasificaciones -->
+                {% if username == 'Supervisor' %}
+                <li class="nav-item">
+                    <a class="nav-link disabled opacity-user" href="clasificaciones">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Clasificaciones</span></a>
+                </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="clasificaciones">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Clasificaciones</span></a>
                 </li>
+                {% endif %}  
 
+                {% if username == 'Operador' %}
                 <!-- Menu Metricas -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed disabled opacity-user" href="#" data-toggle="collapse" data-target="#collapseMetricas"
+                        aria-expanded="true" aria-controls="collapseMetricas">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Métricas</span>
+                    </a>
+                    <div id="collapseMetricas" class="collapse" aria-labelledby="headingMetricas" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="nb-metricas">NAIVE BAYES</a>
+                            <a class="collapse-item" href="svm-metricas">SVM</a>
+                            <a class="collapse-item" href="bert-metricas">BERT</a>       
+                            <a class="collapse-item" href="fusion-metricas">FUSION</a>
+                            <a class="collapse-item" href="metricas">COMPARACIÓN FINAL</a>     
+                        </div>
+                    </div>
+                </li>
+
+                {% else %}
+
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMetricas"
                         aria-expanded="true" aria-controls="collapseMetricas">
@@ -131,6 +178,7 @@
                         </div>
                     </div>
                 </li>
+                {% endif %}
                 
                                 <!-- Divisor -->
                                 <hr class="sidebar-divider">
