@@ -41,17 +41,17 @@
             </div>
 
                             <!-- Menu Gráficos -->
-                            <li class="nav-item">
+                            <li class="nav-item disabled" >
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                                     aria-expanded="true" aria-controls="collapseUtilities">
                                     <i class="fas fa-fw fa-chart-area"></i>
                                     <span>Gráficos</span>
                                 </a>
-                                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                                <div id="collapseUtilities" class="collapse"  aria-labelledby="headingUtilities"
                                     data-parent="#accordionSidebar">
                                     <div class="bg-white py-2 collapse-inner rounded">
-                                        <h6 class="collapse-header">GRÁFICOS:</h6>
-                                        <a class="collapse-item" href="tipos">Gráficos de Tipos</a>
+                                        <h6 class="collapse-header disabled">GRÁFICOS:</h6>
+                                        <a class="collapse-item disabled" href="tipos">Gráficos de Tipos</a>
                                         <a class="collapse-item" href="subtipos">Gráficos de Subtipos</a>
                                         <a class="collapse-item" href="analisis-tiempo">Series de tiempo</a>
                                     </div>
@@ -136,7 +136,7 @@
                 <hr class="sidebar-divider">
                 <br><br><br><br><br><br><br><br>
 
-                <label class="back-purple text-white text-center">Usuario: {{username}}</label>
+                <label class="back-purple text-white text-center" style="font-weight: bold" >Usuario: {{username}}</label>
         </ul>
         <!-- FIN Barra lateral -->
 
@@ -151,7 +151,7 @@
                                     <div class="titulo text-white">
                                         <h2>Sistema de Clasificación de reclamos </h2>
                                     </div>
-                                    <label><a class="back-purple text-white" href="/logout">Salir</a></label>
+                                    <label><a class="back-purple text-white" style="font-weight: bold" href="/logout">Salir</a></label>
                                                              
             
                                 </nav>
@@ -168,7 +168,7 @@
                               <li class="breadcrumb-item active titulo" aria-current="page">Categorización en tipos</li>
                             </ol>
                           </nav>
-                      
+                
                         <div class="card-body  text-center">
                             <iframe src="{{ url_for('static', filename= './img/pie_tipos.html') }}" height="470" width="580"></iframe>
                         </div>

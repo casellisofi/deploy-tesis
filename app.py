@@ -1,18 +1,15 @@
 import json
 import pymysql
-import numpy as np
-import pandas as pd
 from joblib import load
 from libraries import cleaner, reglas, database
 from flask import Flask, request, jsonify, session, url_for, render_template,redirect
-from flask_login import LoginManager
-import sys 
+
 
 try:
-	conexion = pymysql.connect( host='localhost',
-                                user='root',
-                                password='Sofia1900',
-                                db='tesis')
+	conexion = pymysql.connect( host='us-cdbr-east-06.cleardb.net',
+                                user='b2590597ec3463',
+                                password='f0c1aff1',
+                                db='heroku_3389e7d80f0e249')
 	print("Conexión correcta")
 except (pymysql.err.OperationalError, pymysql.err.InternalError) as e:
 	print("Ocurrió un error al conectar: ", e)
@@ -364,5 +361,5 @@ def metricas():
 
 
 if __name__ == "__main__":
-    #app.run(host='0.0.0.0',port='8080')
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port='8080')
+    #app.run(debug=True)
