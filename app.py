@@ -6,10 +6,10 @@ from flask import Flask, request, jsonify, session, url_for, render_template,red
 
 
 try:
-	conexion = pymysql.connect( host='us-cdbr-east-06.cleardb.net',
-                                user='b2590597ec3463',
-                                password='f0c1aff1',
-                                db='heroku_3389e7d80f0e249')
+	conexion = pymysql.connect( host='localhost',
+                                user='root',
+                                password='Sofia1900',
+                                db='tesis')
 	print("Conexión correcta")
 except (pymysql.err.OperationalError, pymysql.err.InternalError) as e:
 	print("Ocurrió un error al conectar: ", e)
@@ -39,7 +39,7 @@ def login():
         password = request.form['password']
         try:
             print(conexion.ping())
-            cursor.execute('SELECT * FROM users WHERE username=%s AND password=%s',(username,password,))
+            cursor.execute('SELECT * FROM usuarios WHERE username=%s AND password=%s',(username,password,))
             record = cursor.fetchone()
             if record:
                 session['loggedin'] = True
@@ -57,6 +57,7 @@ def logout():
     session.pop('username',None)
     return redirect(url_for('login'))
 
+
 @app.route('/naive-bayes')
 def bayes():
     return render_template('bayes.html',username=session['username'])
@@ -68,7 +69,6 @@ def svm():
 @app.route('/bert')
 def bert():
     return render_template('bert.html',username=session['username'])
-
 @app.route('/fusion')
 def fusion():
     return render_template('fusion.html',username=session['username'])
@@ -86,7 +86,7 @@ def clasif():
 def editar_juego(id):
     # Obtener el juego por ID
     database.validar_modelo(id)
-    return redirect("/clasificaciones",username=session['username'])
+    return redirect("/clasificaciones")
 
 
 @app.route('/tipos')
@@ -190,9 +190,7 @@ def predict_svm():
     #Vectorizacion
     tfidf = load(r"models/tipos_tfidf.pkl")
     reclamo_vectorized = tfidf.transform([reclamo_clean])
-    
-    #Predicciones
-            
+    #Predicciones  
     prediction_SVM = svm_model.predict(reclamo_vectorized)
     tipo_svm_id = prediction_SVM
     #Resultados
@@ -200,11 +198,12 @@ def predict_svm():
     subtipo_svm = cleaner.subtipos_arg(tipo_svm,reclamo_clean,'svm')
     #Guardar en la base de datos
     database.insertar_modelo('SVM', text, tipo_svm,subtipo_svm,'NO')
-    return render_template('svm.html', reclamo=text[0], prediction_tipo_svm= tipo_svm,prediction_subtipo_svm= subtipo_svm,username=session['username'])
+    #return redirect(url_for('svm', reclamo=text[0], prediction_tipo_nb= tipo_svm,prediction_subtipo_nb= subtipo_svm,username=session['username']))
+    return render_template('svm.html', reclamo=text[0], tipo= tipo_svm,subtipo= subtipo_svm,username=session['username'])
 
 # VISTA MODELOS BERT
 @app.route('/bert/predict/',methods=["GET", "POST"])
-def predict_bert():
+def predict_bert():   
     
     #Obtener la entrada de texto
     reclamo = [str(x) for x in request.form.values()] 
@@ -225,13 +224,9 @@ def predict_bert():
     #pred = bert_model.predict(reclamo_tokenized_bert, verbose=1)
     prediction_BERT = bert_model.predict(reclamo_tokenized_bert)
     #prediction_bert = np.argmax(pred, axis = 1)
-    tipo_bert_id = prediction_BERT
-    
-    
     #Resultados
     tipo_bert = cleaner.name_tipos(prediction_BERT)
     subtipo_bert = cleaner.subtipos_arg(tipo_bert,reclamo_clean,'bert')
-
     #Guardar en la base de datos
     database.insertar_modelo('BERT', reclamo, tipo_bert,subtipo_bert,'NO')
     return render_template('bert.html', reclamo=reclamo[0],prediction_tipo_bert= tipo_bert,prediction_subtipo_bert= subtipo_bert,username=session['username'])
@@ -370,5 +365,5 @@ def metricas():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port='8080')
-    #app.run(debug=True)
+    #app.run(host='0.0.0.0',port='8080')
+    app.run(debug=True)
